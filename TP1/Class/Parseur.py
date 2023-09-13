@@ -39,6 +39,17 @@ class Parseur :
 
         return (chaine1,chaine2)
 
+    def get_token_long(self,flux:str)->list:
+        liste = []
+        t = 0
+        while t < len(flux):
+            mot = ''
+            while flux[t] != " " :
+                mot += flux[t]
+                t += 1
+            if mot != '':
+                liste.append(mot)
+        return liste
 
 
 

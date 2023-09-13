@@ -10,10 +10,13 @@ flux5 = '12ab'
 flux6 = 'ab12'
 flux7 = '@ab'
 
-print(p.get_token(flux1))  # doit afficher ('a', ' + b')
-print(p.get_token(flux2))  # doit afficher ('a', ' + b')
-print(p.get_token(flux3))  # doit afficher ('a', '+b')
-print(p.get_token(flux4))  # doit afficher ('abcd', '')
-print(p.get_token(flux5))  # doit afficher ('12', 'ab')
-print(p.get_token(flux6))  # doit afficher ('ab12', '')
-print(p.get_token(flux7))  # doit afficher ('', '@ab')
+#print(p.get_token(flux1))  # doit afficher ('a', ' + b')
+#print(p.get_token(flux2))  # doit afficher ('a', ' + b')
+#print(p.get_token(flux3))  # doit afficher ('a', '+b')
+#print(p.get_token(flux4))  # doit afficher ('abcd', '')
+#print(p.get_token(flux5))  # doit afficher ('12', 'ab')
+#print(p.get_token(flux6))  # doit afficher ('ab12', '')
+#print(p.get_token(flux7))  # doit afficher ('', '@ab')
+
+flux8 = "10 + 47 + ces78 + / + @uti"
+print(p.get_token_long(flux8))
