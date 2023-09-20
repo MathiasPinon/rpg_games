@@ -51,9 +51,8 @@ class PrefixExpression(Expression):
 
     def eval(self):
         expr = self.expr.eval()
-        nbr_moins = self.op.count("-")
-        for i in range(nbr_moins):
-            expr *= -1
+        if self.op == "-" :
+            return expr * -1
         return expr
 
 class InfixExpression(Expression):

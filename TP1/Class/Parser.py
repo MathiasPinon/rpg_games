@@ -18,9 +18,10 @@ class Parser:
         chaine2 = ''
         number = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
         i = 0
-        while flux[i] == ' ':
+        while i < len(flux) and flux[i] == ' ' :
             i += 1
-
+        if i < len(flux) :
+            return (chaine1 , flux)
         if flux[i] in self.alph:
             chaine1 = flux
 
@@ -56,3 +57,9 @@ class Parser:
         for t in range(len(liste)):
              fluxListe.append(self.get_token(liste[t])[0] )
         return fluxListe
+
+    def is_operator(self,token:str):
+        operateur = ["+","-","/","*"]
+        if token in operateur :
+            return True
+        return False
