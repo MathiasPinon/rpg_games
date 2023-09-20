@@ -1,6 +1,9 @@
+from typing import Dict
+
 import Class.Expression
 from Class.Parser import Parser
 from Class.Expression import *
+
 '''
 p = Parser()
 
@@ -24,20 +27,21 @@ print(p.get_token(flux7))  # doit afficher ('', '@ab')
 #print(p.get_token_long(flux8))
 '''
 
+
 def read_expression(flot: str) -> (Expression, str):
     """
     :param flot:
     :return:
     """
-    #Création d'une classe
+    # Création d'une classe
     p = Parser()
 
-    #définition du token
+    # définition du token
     (token, flot) = p.get_token(flot)
     previousExpression = None
     currentExpression = None
 
-    #Tant que il y a un token
+    # Tant que il y a un token
     while token:
         # Si token est un nombre ou str
         if token.isnumeric():
@@ -63,3 +67,8 @@ def read_expression(flot: str) -> (Expression, str):
         (token, flot) = p.get_token(flot)
 
     return currentExpression, flot
+
+
+def read_expression(flot: str) -> (Expression, Dict[str, Variable], str):
+    dico = {flot : Variable}
+    return (Expression , dico , flot)
