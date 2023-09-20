@@ -1,4 +1,4 @@
-class Parseur:
+class Parser:
     alph: list
 
     def __init__(self, liste: list = ['+', '-', '*', '/', '_', '(', ')', ' ']):
@@ -32,7 +32,7 @@ class Parseur:
                 for t in range(i, len(flux)):
                     chaine2 += flux[t]
             else:
-                while i < len(flux) and flux[i].isalnum():
+                while i < len(flux) and flux[i].isalnum() :
                     chaine1 += flux[i]
                     i += 1
                 for t in range(i, len(flux)):
