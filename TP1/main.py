@@ -1,5 +1,5 @@
 from Class.Parser import Parser
-
+'''
 p = Parser()
 
 flux1 = 'a + b'
@@ -20,3 +20,4 @@ print(p.get_token(flux7))  # doit afficher ('', '@ab')
 
 #flux8 = "410fer + 47 + ces78 + / + @uti + 14fer "
 #print(p.get_token_long(flux8))
+'''

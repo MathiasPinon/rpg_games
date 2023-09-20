@@ -50,7 +50,11 @@ class PrefixExpression(Expression):
         return chaine_car
 
     def eval(self):
-        return
+        expr = self.expr.eval()
+        nbr_moins = self.op.count("-")
+        for i in range(nbr_moins):
+            expr *= -1
+        return expr
 
 class InfixExpression(Expression):
     op: str
@@ -63,8 +67,18 @@ class InfixExpression(Expression):
         self.expr2 = expr2
 
     def __str__(self) -> str:
-        chaine_car = self.op + ' ' + self.expr1.__str__() + ' ' + self.expr2.__str__()
+        chaine_car = self.expr1.__str__() + ' ' + self.op + ' ' + self.expr2.__str__()
         return chaine_car
 
     def eval(self):
-        return
+        expr1 = self.expr1.eval()
+        expr2 = self.expr2.eval()
+        nbr_moins = self.op.count("-")
+        if self.op == "-":
+            return expr1 - expr2
+        if self.op == "+" :
+            return expr1 + expr2
+        if self.op == "*" :
+            return expr1 * expr2
+        if self.op == "/" :
+            return expr1 // expr2
