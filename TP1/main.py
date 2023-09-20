@@ -6,7 +6,7 @@ flux1 = 'a + b'
 flux2 = ' a + b'
 flux3 = 'a+b'
 flux4 = 'abcd'
-flux5 = '12ab'
+flux5 = '410fer'
 flux6 = 'ab12'
 flux7 = '@ab'
 
@@ -18,5 +18,5 @@ flux7 = '@ab'
 #print(p.get_token(flux6))  # doit afficher ('ab12', '')
 #print(p.get_token(flux7))  # doit afficher ('', '@ab')
 
-flux8 = "10 + 47 + ces78 + / + @uti"
+flux8 = "410fer + 47 + ces78 + / + @uti + 14fer "
 print(p.get_token_long(flux8))
