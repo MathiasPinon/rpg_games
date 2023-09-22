@@ -9,7 +9,7 @@ class Personnage(object):
         if obj is None:
             self.objets = []
         else:
-            self.objets = obj
+            self.objets = obj.copy()
 
         self.pv = 100
         self.richesse = 100.0
