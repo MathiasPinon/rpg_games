@@ -66,9 +66,7 @@ def read_expression(flot: str) -> (Expression, str):
         previousExpression = currentExpression
         (token, flot) = p.get_token(flot)
 
-    return currentExpression, flot
+
+    return (currentExpression, flot)
 
 
-def read_expression(flot: str) -> (Expression, Dict[str, Variable], str):
-    dico = {flot : Variable}
-    return (Expression , dico , flot)

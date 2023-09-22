@@ -72,7 +72,6 @@ class InfixExpression(Expression):
     def eval(self):
         expr1 = self.expr1.eval()
         expr2 = self.expr2.eval()
-        nbr_moins = self.op.count("-")
         if self.op == "-":
             return expr1 - expr2
         if self.op == "+" :
