@@ -1,6 +1,6 @@
 from random import randint
 from TP2.Objet import *
-
+from random import choice
 
 class Personnage(object):
 
@@ -91,3 +91,23 @@ class Personnage(object):
             return True
         else:
             return False
+
+
+    def choisir_action(self , autre):
+        i = randint(0, 4)
+        if i == 0:
+            if autre.getObjets():
+                return self.acheter(choice(autre.getObjets()), autre)
+        elif i == 1:
+            if autre.getObjets():
+                return self.prendre(choice(autre.getObjets()), autre)
+        elif i == 2:
+            if self.objets:
+                return self.vendre(choice(self.objets), autre)
+        elif i == 3:
+            if self.objets:
+                return self.donner(choice(self.objets), autre)
+        else:
+            return True
+
+        return False
