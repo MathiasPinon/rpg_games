@@ -1,5 +1,5 @@
 from random import randint
-from Objet import *
+from TP2.Objet import *
 
 
 class Personnage(object):
@@ -65,6 +65,29 @@ class Personnage(object):
             elif self in autre.amis:
                 if autre.amis[self] + 0.5 <= 1:
                     autre.amis[self] += 0.5
+                else:
+                    autre.amis[self] = 1
+            return True
+        else:
+            return False
+
+    def prendre(self, obj: Objet, autre):
+        if obj in autre.objets and self.force > autre.force or (
+                self.force == autre.force and self.obstination > autre.obstination):
+            autre.objets.remove(obj)
+            self.ajoutObjet(obj)
+            autre.amis[self] = -1
+            if autre not in self.amis:
+                self.amis[autre] = 0
+            degat = self.force - autre.force
+            if self.pv - degat > 0:
+                self.pv -= degat
+            else:
+                self.pv = 0
+            if autre.pv - degat > 0:
+                autre.pv -= degat
+            else:
+                autre.pv = 0
             return True
         else:
             return False
