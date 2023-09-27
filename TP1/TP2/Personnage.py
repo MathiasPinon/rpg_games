@@ -1,4 +1,5 @@
 from random import randint
+from Objet import *
 
 
 class Personnage(object):
@@ -25,7 +26,7 @@ class Personnage(object):
     def __str__(self) -> str:
         return f'{self.nom} a {self.pv} points de vie et {self.richesse} de richesse'
 
-    def ajoutObjet(self, obj: object):
+    def ajoutObjet(self, obj: Objet):
         list_obj = self.objets
         list_obj.append(obj)
         self.objets = list_obj
@@ -33,3 +34,22 @@ class Personnage(object):
     def getObjets(self) -> list:
         list = self.objets.copy()
         return list
+
+    def vendre(self, obj: Objet, autre) -> bool:
+        if obj in self.objets and obj.valeur <= autre.richesse:
+            self.richesse = self.richesse + obj.valeur
+            autre.richesse = autre.richesse - obj.valeur
+            self.objets.remove(obj)
+            autre.ajoutObjet(obj)
+            if autre not in self.amis:
+                self.amis[autre] = 0
+            if self not in autre.amis:
+                autre.amis[self] = 0
+
+            return True
+
+        else:
+            return False
+
+    def acheter(self, obj: Objet, autre) -> bool:
+        return autre.vendre(obj, self)

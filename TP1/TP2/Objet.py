@@ -5,3 +5,4 @@ class Objet(object):
 
         self.nom = n
         self.valeur = v
+
