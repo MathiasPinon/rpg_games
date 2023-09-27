@@ -31,5 +31,5 @@ class Personnage(object):
         self.objets = list_obj
 
     def getObjets(self) -> list:
-        list = self.objets
+        list = self.objets.copy()
         return list
