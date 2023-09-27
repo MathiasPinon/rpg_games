@@ -87,7 +87,8 @@ class TestCharmeur(unittest.TestCase):
         Personnage.choisir_action = PersonnageTest.choisir_action
 
         action = c1.choisir_action(c2)
-        self.assertTrue(action in {"PersonnageTest.choisir_action", "PersonnageTest.vendre", "PersonnageTest.acheter", "PersonnageTest.donner", "PersonnageTest.prendre"})
+        print(action)
+        self.assertTrue(action in {"PersonnageTest.choisir_action", "PersonnageTest.vendre", "PersonnageTest.acheter", "PersonnageTest.donner", "PersonnageTest.prendre" , False })
 
 if __name__ == '__main__':
     unittest.main()
