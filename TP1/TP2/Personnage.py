@@ -2,6 +2,7 @@ from random import randint
 from TP2.Objet import *
 from random import choice
 
+
 class Personnage(object):
 
     def __init__(self, n: str, obj: list = None):
@@ -92,8 +93,7 @@ class Personnage(object):
         else:
             return False
 
-
-    def choisir_action(self , autre):
+    def choisir_action(self, autre):
         i = randint(0, 4)
         if i == 0:
             if autre.getObjets():
@@ -111,3 +111,30 @@ class Personnage(object):
             return True
 
         return False
+
+    def __str__(self):
+        obj =  f"{self.nom} à {self.richesse} pièce et à actuellement {self.pv} pv.\n"
+        if len(self.objets) > 1:
+            obj += "Dispose de : "
+            for i in range(len(self.objets)):
+                if i != (len(self.objets) - 1):
+                     obj += str(self.objets[i].nom) + " ,"
+                else:
+                     obj += str(self.objets[i].nom) + " .\n"
+        else:
+            obj += "Possède aucun objet.\n"
+        if len(self.amis) > 0:
+            obj += "Il a dans sa liste d'amis : "
+            t = 0
+            for perso in self.amis.keys():
+                t += 1
+                if perso.nom is not None:
+                    if t != len(self.amis):
+                        obj += perso.nom + ", "
+                    else:
+                        obj += perso.nom + ".\n"
+        else:
+            obj += "Il n'a pas d'amis .\n"
+
+        return obj
+
