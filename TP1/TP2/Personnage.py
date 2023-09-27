@@ -53,3 +53,18 @@ class Personnage(object):
 
     def acheter(self, obj: Objet, autre) -> bool:
         return autre.vendre(obj, self)
+
+    def donner(self, obj: Objet, autre) -> bool:
+        if obj in self.objets:
+            self.objets.remove(obj)
+            autre.ajoutObjet(obj)
+            if autre not in self.amis:
+                self.amis[autre] = 0
+            if self not in autre.amis:
+                autre.amis[self] = 0.5
+            elif self in autre.amis:
+                if autre.amis[self] + 0.5 <= 1:
+                    autre.amis[self] += 0.5
+            return True
+        else:
+            return False
