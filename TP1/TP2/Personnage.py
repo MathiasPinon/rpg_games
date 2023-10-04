@@ -4,7 +4,6 @@ from random import choice
 
 
 class Personnage(object):
-
     def __init__(self, n: str, obj: list = None):
         self.nom = n
         self.amis = {}
@@ -13,16 +12,44 @@ class Personnage(object):
         else:
             self.objets = obj.copy()
 
-        self.pv = 100
-        self.richesse = 100.0
+        self._pv = 100
+        self._richesse = 100.0
 
-        self.intelligence = randint(3, 18)
-        self.force = randint(3, 18)
-        self.charisme = randint(3, 18)
-        self.obstination = randint(3, 18)
-        self.empathie = randint(3, 18)
+        self._intelligence = randint(3, 18)
+        self._force = randint(3, 18)
+        self._charisme = randint(3, 18)
+        self._obstination = randint(3, 18)
+        self._empathie = randint(3, 18)
 
         super().__init__()
+
+    @property
+    def pv(self):
+        return self._pv
+
+    @property
+    def richesse(self):
+        return self._richesse
+
+    @property
+    def intelligence(self):
+        return self._intelligence
+
+    @property
+    def force(self):
+        return self._force
+
+    @property
+    def charisme(self):
+        return self._charisme
+
+    @property
+    def obstination(self):
+        return self._obstination
+
+    @property
+    def empathie(self):
+        return self._empathie
 
     def __str__(self) -> str:
         return f'{self.nom} a {self.pv} points de vie et {self.richesse} de richesse'
@@ -38,7 +65,7 @@ class Personnage(object):
 
     def vendre(self, obj: Objet, autre) -> bool:
         if obj in self.objets and obj.valeur <= autre.richesse:
-            self.richesse = self.richesse + obj.valeur
+            self._richesse = self.richesse + obj.valeur
             autre.richesse = autre.richesse - obj.valeur
             self.objets.remove(obj)
             autre.ajoutObjet(obj)
@@ -82,9 +109,9 @@ class Personnage(object):
                 self.amis[autre] = 0
             degat = self.force - autre.force
             if self.pv - degat > 0:
-                self.pv -= degat
+                self._pv -= degat
             else:
-                self.pv = 0
+                self._pv = 0
             if autre.pv - degat > 0:
                 autre.pv -= degat
             else:
