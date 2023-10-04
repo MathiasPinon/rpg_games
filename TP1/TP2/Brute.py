@@ -13,14 +13,14 @@ class Brute(Personnage):
 
         if autre not in self.amis or self.amis[autre] <= 0 :
             if type(autre) != Charmeur :
-                obj_choisi = randint(0, len(autre.objets) - 1)
-                return self.prendre(self.objets[obj_choisi], autre)
+                if len(autre.objets) > 0:
+                    return self.prendre(choice(autre.getObjets()), autre)
             else :
                 return False
         else:
             if type(autre) == Charmeur  and autre.charisme > self.charisme :
-                obj_choisi = randint(0, len(self.objets) - 1)
-                return self.donner(obj_choisi,autre)
+                if len(self.objets) > 0:
+                    return self.donner(choice(self.objets), autre)
             else :
                 i = randint(0, 2)
                 if i == 0:

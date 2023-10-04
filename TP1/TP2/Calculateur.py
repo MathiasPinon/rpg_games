@@ -16,8 +16,6 @@ class Calculateur(Personnage):
 
     def choisir_action(self, autre):
 
-
-
         if self.pv < 10 :
             i = randint(0,2)
             if i == 0 :
@@ -30,14 +28,16 @@ class Calculateur(Personnage):
                     if self.objets :
                         return self.donner(choice(self.objets),autre)
         if self.force > autre.force :
-            return self.prendre(choice(self.objets),autre)
+            if len(autre.objets) > 0:
+                return self.prendre(choice(autre.objets),autre)
 
         if type(autre) == Charmeur:
-            i = randint(0, len(self.objets) - 1)
-            return self.vendre(self.objets[i], autre)
+            if len(self.objets) > 0:
+                return self.vendre(choice(self.objets), autre)
 
         if autre in self.amis and self.amis[autre] <= 0 :
-            return self.donner(choice(self.objets),autre)
+            if len(self.objets) > 0 :
+                return self.donner(choice(self.objets),autre)
 
         t = randint(0,1)
         if t == 0 :
