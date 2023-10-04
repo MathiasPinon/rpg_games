@@ -138,3 +138,22 @@ class Personnage(object):
 
         return obj
 
+    def getAmis(self) -> dict :
+        # Retourne le dictionnaire des amis et leur niveau d'amitié d'un Personnage
+        return self.amis
+
+    def getPV(self) -> float:
+        # Retourne les points de vie d'un Personnage
+        return self.pv
+
+    def getRichesse(self) -> float:
+        # Retourne la totalité des richesses d'un Personnage
+        # la totalité des richesses est définie par la somme des valeurs des objets
+        # que possède un Personnage ainsi que la valeur de l'attribut self.richesse
+        richesse = 0
+        for i in range(len(self.objets)) :
+            richesse += self.objets[i].valeur
+        richesse += self.richesse
+        return richesse
+
+
