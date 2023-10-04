@@ -2,7 +2,7 @@ from TP2.Personnage import Personnage
 from random import *
 from TP2.Charmeur import Charmeur
 from TP2.Brute import Brute
-from TP2.Négociateur import Négociateur
+from TP2.Negociateur import Négociateur
 
 
 class Calculateur(Personnage):

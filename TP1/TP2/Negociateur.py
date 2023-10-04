@@ -4,7 +4,7 @@ from TP2.Charmeur import Charmeur
 from TP2.Brute import Brute
 
 
-class Négociateur(Personnage):
+class Negociateur(Personnage):
 
     def __init__(self, n: str, obj: list = None):
         Personnage.__init__(self, n, obj)
@@ -18,9 +18,8 @@ class Négociateur(Personnage):
             obj = randint(0, len(autre.objets) - 1)
             obj_choix = autre.objets[obj]
             return self.acheter(obj_choix, autre)
-
-        if self.intelligence > autre.inteligence or (self.intelligence == autre.inteligence and self.obstination > autre.obstination ) :
-            if self.amis[autre] > 0 :
+        if self.intelligence > autre.intelligence or (self.intelligence == autre.intelligence and self.obstination > autre.obstination ) :
+            if autre in self.amis and self.amis[autre] > 0 :
                 i = randint(0,1)
                 if i == 0 :
                     obj = randint(0,len(self.objets)-1)
@@ -54,3 +53,5 @@ class Négociateur(Personnage):
                 obj = randint(0, len(autre.objets) - 1)
                 obj_choix = autre.objets[obj]
                 return self.acheter(obj_choix, autre)
+
+        return False
