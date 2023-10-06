@@ -15,7 +15,7 @@ class Objet(object):
     def effetCession(self, p):
         # Renvoie la fonction à exécuter lorsqu'un Personnage `p` cède l'objet `self`
         def effet(**kwargs):
-            # A compléter
+            RandomObjet()
             pass
 
         return effet
