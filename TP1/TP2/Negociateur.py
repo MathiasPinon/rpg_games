@@ -17,7 +17,7 @@ class Negociateur(Personnage):
         if type(autre) == Charmeur :
             if len(autre.objets) > 0:
                 return self.acheter(choice(autre.getObjets()), autre)
-        if self.intelligence > autre.intelligence or (self.intelligence == autre.intelligence and self.obstination > autre.obstination ) :
+        elif self.intelligence > autre.intelligence or (self.intelligence == autre.intelligence and self.obstination > autre.obstination ) :
             if autre in self.amis and self.amis[autre] > 0 :
                 i = randint(0,1)
                 if i == 0 :
