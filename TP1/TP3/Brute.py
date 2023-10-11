@@ -1,13 +1,13 @@
-from TP2.Personnage import Personnage
+from TP3.Personnage import Personnage
 from random import *
-from TP2.Charmeur import Charmeur
+from TP3.Charmeur import Charmeur
 class Brute(Personnage):
     def __init__(self, n: str, obj: list = None):
         Personnage.__init__(self, n, obj)
-        self.force *= 1.30
-        self.obstination *= 1.30
-        self.intelligence *= 0.70
-        self.charisme *= 0.70
+        self._force *= 1.30
+        self._obstination *= 1.30
+        self._intelligence *= 0.70
+        self._charisme *= 0.70
 
     def choisir_action(self, autre):
 

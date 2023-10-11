@@ -1,5 +1,5 @@
 from random import randint
-from TP2.Objet import *
+from TP3.Objet import *
 from random import choice
 
 
@@ -65,10 +65,8 @@ class Personnage(object):
 
     def vendre(self, obj: Objet, autre) -> bool:
         if obj in self.objets and obj.valeur <= autre.richesse:
-            self._richesse = self.richesse + obj.valeur
-            autre.richesse = autre.richesse - obj.valeur
-            obj.effetCession(self)
-            obj.effetAcquisition(autre)
+            obj.effetCession(self)(prix=obj.valeur)
+            obj.effetAcquisition(autre)(prix=obj.valeur)
             autre.ajoutObjet(obj)
             if autre not in self.amis:
                 self.amis[autre] = 0
@@ -85,8 +83,8 @@ class Personnage(object):
 
     def donner(self, obj: Objet, autre) -> bool:
         if obj in self.objets:
-            obj.effetCession(self)
-            obj.effetAcquisition(autre)
+            obj.effetCession(self)(prix=obj.valeur)
+            obj.effetAcquisition(autre)(prix=obj.valeur)
             if autre not in self.amis:
                 self.amis[autre] = 0
             if self not in autre.amis:
@@ -103,8 +101,8 @@ class Personnage(object):
     def prendre(self, obj: Objet, autre):
         if obj in autre.objets and self.force > autre.force or (
                 self.force == autre.force and self.obstination > autre.obstination):
-            obj.effetCession(autre)
-            obj.effetAcquisition(self)
+            obj.effetCession(autre)(prix=obj.valeur)
+            obj.effetAcquisition(self)(prix=obj.valeur)
             autre.amis[self] = -1
             if autre not in self.amis:
                 self.amis[autre] = 0

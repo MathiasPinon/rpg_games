@@ -16,7 +16,7 @@ perso_defaut = Personnage('')
 
 def create_RandomPersonnage() -> Personnage:
     perso_type = random.choice(personnages)
-    if type(perso_defaut.getObjets()) == 'list':
+    if isinstance(perso_defaut.getObjets(),list):
         objets = [Objet(random.choice(words)) for _ in range(5)]
     else:
         objets = {Objet(random.choice(words)) for _ in range(5)}

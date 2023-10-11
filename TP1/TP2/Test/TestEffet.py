@@ -1,8 +1,8 @@
 import random
 import unittest
 
-from TP2.Objet import Objet
-from RandomPersonnage import create_RandomPersonnage
+from TP3.Objet import Objet
+from TP3.RandomPersonnage import create_RandomPersonnage
 
 
 class AcquisitionCessionTest(unittest.TestCase):

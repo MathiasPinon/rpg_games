@@ -9,18 +9,17 @@ class Objet(object):
     def effetAcquisition(self, p):
         # Renvoie la fonction à exécuter lorsqu'un Personnage `p` acquiert l'objet `self`
         def effet(**kwargs):
-            prix =  kwargs['prix'] if 'prix' in kwargs.keys() else 0
-            p.richesse = p.richesse - prix
+            prix =  kwargs['prix'] if 'prix' in kwargs.keys() else self.valeur
+            p._richesse = p._richesse - prix
             p.objets.append(self)
-        return effet(prix=self.valeur)
-
+        return effet
     def effetCession(self, p):
         # Renvoie la fonction à exécuter lorsqu'un Personnage `p` cède l'objet `self`
         def effet(**kwargs):
-            prix = kwargs['prix'] if 'prix' in kwargs.keys() else 0
-            p.richesse = p.richesse + prix
+            prix = kwargs['prix'] if 'prix' in kwargs.keys() else self.valeur
+            p._richesse = p._richesse + prix
             ind = p.objets.index(self)
             del p.objets[ind]
-        return effet(prix=self.valeur)
+        return effet
 
 

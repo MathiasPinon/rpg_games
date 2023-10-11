@@ -1,14 +1,14 @@
-from TP2.Personnage import Personnage
+from TP3.Personnage import Personnage
 from random import *
 
 class Charmeur(Personnage):
 
     def __init__(self , n: str, obj: list = None):
         Personnage.__init__(self, n , obj )
-        self.charisme *= 1.30
-        self.empathie *= 1.30
-        self.force *= 0.70
-        self.obstination *= 0.70
+        self._charisme *= 1.30
+        self._empathie *= 1.30
+        self._force *= 0.70
+        self._obstination *= 0.70
 
     def choisir_action(self, autre):
 
