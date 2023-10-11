@@ -113,7 +113,7 @@ class Personnage(object):
             if autre._pv - degat > 0:
                 autre._pv -= degat
             else:
-                autre.pv = 0
+                autre._pv = 0
             return True
         else:
             return False
