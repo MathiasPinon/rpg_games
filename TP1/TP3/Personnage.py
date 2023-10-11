@@ -67,7 +67,6 @@ class Personnage(object):
         if obj in self.objets and obj.valeur <= autre.richesse:
             obj.effetCession(self)(prix=obj.valeur)
             obj.effetAcquisition(autre)(prix=obj.valeur)
-            autre.ajoutObjet(obj)
             if autre not in self.amis:
                 self.amis[autre] = 0
             if self not in autre.amis:
@@ -83,8 +82,8 @@ class Personnage(object):
 
     def donner(self, obj: Objet, autre) -> bool:
         if obj in self.objets:
-            obj.effetCession(self)(prix=obj.valeur)
-            obj.effetAcquisition(autre)(prix=obj.valeur)
+            obj.effetCession(self)(prix=0)
+            obj.effetAcquisition(autre)(prix=0)
             if autre not in self.amis:
                 self.amis[autre] = 0
             if self not in autre.amis:
@@ -101,8 +100,8 @@ class Personnage(object):
     def prendre(self, obj: Objet, autre):
         if obj in autre.objets and self.force > autre.force or (
                 self.force == autre.force and self.obstination > autre.obstination):
-            obj.effetCession(autre)(prix=obj.valeur)
-            obj.effetAcquisition(self)(prix=obj.valeur)
+            obj.effetCession(autre)(prix=0)
+            obj.effetAcquisition(self)(prix=0)
             autre.amis[self] = -1
             if autre not in self.amis:
                 self.amis[autre] = 0
@@ -111,8 +110,8 @@ class Personnage(object):
                 self._pv -= degat
             else:
                 self._pv = 0
-            if autre.pv - degat > 0:
-                autre.pv -= degat
+            if autre._pv - degat > 0:
+                autre._pv -= degat
             else:
                 autre.pv = 0
             return True
