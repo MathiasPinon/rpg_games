@@ -1,19 +1,32 @@
-class Actionnable(object):
-    def __init__(self, **kwargs):
+class Affichable(object):
+
+    def __init__(self, n : str = None, **kwargs):
         super().__init__(**kwargs)
-        self._actions = {}
+        self.__name = n
+        if 'glyph' in kwargs.keys():
+            self.__glyph = kwargs['glyph']
+            del kwargs['glyph']
+        else:
+            self.__glyph = None
+
+        self.__attributs = kwargs.copy()
 
     @property
-    def actions(self):
-        return self._actions
+    def nom(self):
+        return self.__name
 
-if __name__ == '__main__':
-    a = Actionnable()
+    @nom.setter
+    def nom(self, n: str):
+        self.__name = n
 
-    def f():
-        print('Action effectuée')
+    @property
+    def glyph(self):
+        return self.__glyph
 
-    a.actions['demo'] = f
+    @glyph.setter
+    def glyph(self, g):
+        self.__glyph = g
 
-    print(a.actions)
-    a.actions['demo']()
+    @property
+    def attributs(self):
+        return self.__attributs
