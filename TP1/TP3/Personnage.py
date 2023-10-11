@@ -12,17 +12,44 @@ class Personnage(object):
         else:
             self.objets = obj.copy()
 
-        self.pv = 100
-        self.richesse = 100.0
+        self._pv = 100
+        self._richesse = 100.0
 
-        self.intelligence = randint(3, 18)
-        self.force = randint(3, 18)
-        self.charisme = randint(3, 18)
-        self.obstination = randint(3, 18)
-        self.empathie = randint(3, 18)
+        self._intelligence = randint(3, 18)
+        self._force = randint(3, 18)
+        self._charisme = randint(3, 18)
+        self._obstination = randint(3, 18)
+        self._empathie = randint(3, 18)
 
         super().__init__()
 
+    @property
+    def pv(self):
+        return self._pv
+
+    @property
+    def richesse(self):
+        return self._richesse
+
+    @property
+    def intelligence(self):
+        return self._intelligence
+
+    @property
+    def force(self):
+        return self._force
+
+    @property
+    def charisme(self):
+        return self._charisme
+
+    @property
+    def obstination(self):
+        return self._obstination
+
+    @property
+    def empathie(self):
+        return self._empathie
 
     def __str__(self) -> str:
         return f'{self.nom} a {self.pv} points de vie et {self.richesse} de richesse'
@@ -40,7 +67,8 @@ class Personnage(object):
         if obj in self.objets and obj.valeur <= autre.richesse:
             self._richesse = self.richesse + obj.valeur
             autre.richesse = autre.richesse - obj.valeur
-            self.objets.remove(obj)
+            obj.effetCession(self)
+            obj.effetAcquisition(autre)
             autre.ajoutObjet(obj)
             if autre not in self.amis:
                 self.amis[autre] = 0
@@ -57,8 +85,8 @@ class Personnage(object):
 
     def donner(self, obj: Objet, autre) -> bool:
         if obj in self.objets:
-            self.objets.remove(obj)
-            autre.ajoutObjet(obj)
+            obj.effetCession(self)
+            obj.effetAcquisition(autre)
             if autre not in self.amis:
                 self.amis[autre] = 0
             if self not in autre.amis:
@@ -75,8 +103,8 @@ class Personnage(object):
     def prendre(self, obj: Objet, autre):
         if obj in autre.objets and self.force > autre.force or (
                 self.force == autre.force and self.obstination > autre.obstination):
-            autre.objets.remove(obj)
-            self.ajoutObjet(obj)
+            obj.effetCession(autre)
+            obj.effetAcquisition(self)
             autre.amis[self] = -1
             if autre not in self.amis:
                 self.amis[autre] = 0
