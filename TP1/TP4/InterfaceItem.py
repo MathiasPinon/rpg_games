@@ -10,12 +10,19 @@ class InterfaceItem(Deplacable, Affichable):
 
     def __init__(self, **kwargs):
         Affichable.__init__(self, n = kwargs['name'])
-        self.cv = kwargs['cv']
-        x = randint( 0, kwargs['cv'].winfo_screenwidth())
-        y = randint(0, kwargs['cv'].winfo_screenheight())
+        self.__cv = kwargs['cv']
+        x = randint( 1, kwargs['cv'].winfo_screenwidth())
+        y = randint(1, kwargs['cv'].winfo_screenheight())
         Deplacable.__init__(self , x = x , y =  y)
-        self.glyph = self.glyph if 'glyph' in kwargs.keys() else petitRectangle(self.cv , self.nom)
-        self.cv.moveto(self.glyph, self.lieu[0], self.lieu[1])
+        self.glyph = self.glyph if 'glyph' in kwargs.keys() else petitRectangle(self.__cv , self.nom)
+        self.__cv.moveto(self.glyph, self.lieu[0], self.lieu[1])
+
+    def attributsWindow(self):
+        w = tkinter.Toplevel(self.__cv)
+        w.title(f'Attributs pour {self.nom}')
+        l2 = tkinter.Label(w, text=self.attributs)
+        l2.grid(row = 1 , column = 0 , pady = 2)
+
 
 
 
@@ -25,12 +32,15 @@ def randomRGBString():
 def petitRectangle(cv : tkinter.Canvas, nom : str):
     return cv.create_rectangle(0, 0, 3, 3, fill=randomRGBString(), tags=nom)
 
+
+
 if __name__ == '__main__':
     root = tkinter.Tk()
     myCanvas = GrilleDeJeu(root, bg="white", height=300, width=300)
 
-    obj1 = InterfaceItem(name="Obj1", cv=myCanvas)
-    obj2 = InterfaceItem(name="Obj2", cv=myCanvas)
+    obj = InterfaceItem(name="Obj1", cv=myCanvas)
+    obj.attributs['Attr'] = 'Un attribut'
+    obj.attributsWindow()
 
     myCanvas.pack()
     root.mainloop()
