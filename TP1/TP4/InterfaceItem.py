@@ -36,6 +36,8 @@ def petitRectangle(cv : tkinter.Canvas, nom : str):
     return cv.create_rectangle(0, 0, 3, 3, fill=randomRGBString(), tags=nom)
 
 
+ help(tkinter.Event)
+
 if __name__ == '__main__':
     root = tkinter.Tk()
     myCanvas = GrilleDeJeu(root, bg="white", height=300, width=300)
