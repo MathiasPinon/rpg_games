@@ -9,15 +9,15 @@ from TP4.GrilleDeJeu import GrilleDeJeu
 class InterfaceItem(Deplacable, Affichable):
 
     def __init__(self, **kwargs):
-        Affichable.__init__(self, n = kwargs['name'])
         self.__cv = kwargs['cv']
-        x = randint( 1, kwargs['cv'].winfo_reqwidth())
+        x = randint(1, kwargs['cv'].winfo_reqwidth())
         y = randint(1, kwargs['cv'].winfo_reqheight())
-        Deplacable.__init__(self , x = x , y =  y)
-        print(x,y)
-        print(self.lieu)
+        super().__init__(x = x , y =  y, n = kwargs['name'])
+
+        # Deplacable.__init__(self , x = x , y =  y)
         self.glyph = self.glyph if 'glyph' in kwargs.keys() else petitRectangle(self.__cv , self.nom)
         self.__cv.moveto(self.glyph, self.lieu[0], self.lieu[1])
+        self.__cv.tag_bind(self.nom, "<Button-2>", self.afficher)
 
     def attributsWindow(self):
         w = tkinter.Toplevel(self.__cv)
@@ -25,7 +25,8 @@ class InterfaceItem(Deplacable, Affichable):
         l2 = tkinter.Label(w, text=self.attributs)
         l2.grid(row = 1 , column = 0 , pady = 2)
 
-
+    def afficher(self, e=None):
+        self.attributsWindow()
 
 
 def randomRGBString():
