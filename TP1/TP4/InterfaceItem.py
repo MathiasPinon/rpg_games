@@ -11,9 +11,11 @@ class InterfaceItem(Deplacable, Affichable):
     def __init__(self, **kwargs):
         Affichable.__init__(self, n = kwargs['name'])
         self.__cv = kwargs['cv']
-        x = randint( 1, kwargs['cv'].winfo_screenwidth())
-        y = randint(1, kwargs['cv'].winfo_screenheight())
+        x = randint( 1, kwargs['cv'].winfo_reqwidth())
+        y = randint(1, kwargs['cv'].winfo_reqheight())
         Deplacable.__init__(self , x = x , y =  y)
+        print(x,y)
+        print(self.lieu)
         self.glyph = self.glyph if 'glyph' in kwargs.keys() else petitRectangle(self.__cv , self.nom)
         self.__cv.moveto(self.glyph, self.lieu[0], self.lieu[1])
 
@@ -31,7 +33,6 @@ def randomRGBString():
 
 def petitRectangle(cv : tkinter.Canvas, nom : str):
     return cv.create_rectangle(0, 0, 3, 3, fill=randomRGBString(), tags=nom)
-
 
 
 if __name__ == '__main__':
