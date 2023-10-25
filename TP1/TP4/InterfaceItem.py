@@ -13,10 +13,10 @@ class InterfaceItem(Deplacable, Affichable):
         x = randint(1, kwargs['cv'].winfo_reqwidth())
         y = randint(1, kwargs['cv'].winfo_reqheight())
         super().__init__(x = x , y =  y, n = kwargs['name'])
-
         # Deplacable.__init__(self , x = x , y =  y)
         self.glyph = self.glyph if 'glyph' in kwargs.keys() else petitRectangle(self.__cv , self.nom)
         self.__cv.moveto(self.glyph, self.lieu[0], self.lieu[1])
+        self.__cv.ajoutItem(self)
         self.__cv.tag_bind(self.nom, "<Button-2>", self.afficher)
         self.__cv.tag_bind(self.nom, "<B1-Motion>", self.action2)
         self.__cv.tag_bind(self.nom, "<ButtonRelease-1>", self.action3)
@@ -40,9 +40,10 @@ class InterfaceItem(Deplacable, Affichable):
         return
 
     def deplacer(self,e):
+        self.__cv.enleveItem(self)
         self.move()
+        self.__cv.ajoutItem(self)
         self.__cv.moveto(self.glyph, self.lieu[0], self.lieu[1])
-
         if self.lieu != self.destination:
             self.__cv.after(100, self.deplacer, e)
 
