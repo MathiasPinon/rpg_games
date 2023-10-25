@@ -9,7 +9,7 @@ from TP4.GrilleDeJeu import GrilleDeJeu
 class InterfaceItem(Deplacable, Affichable):
 
     def __init__(self, **kwargs):
-        self.__cv = kwargs['cv']
+        self.__cv = kwargs['cv'] if "cv" in kwargs.keys() else None
         x = randint(1, kwargs['cv'].winfo_reqwidth())
         y = randint(1, kwargs['cv'].winfo_reqheight())
         super().__init__(x = x , y =  y, n = kwargs['name'])
@@ -25,7 +25,13 @@ class InterfaceItem(Deplacable, Affichable):
         w = tkinter.Toplevel(self.__cv)
         w.title(f'Attributs pour {self.nom}')
         l2 = tkinter.Label(w, text=self.attributs)
-        l2.grid(row = 1 , column = 0 , pady = 2)
+        i = 1
+        for keys, values in self.attributs.items():
+            l2 = tkinter.Label(w, text=f"{keys}:")
+            l2.grid(row = i , column = 0 , pady = 2)
+            l2 = tkinter.Label(w, text=values)
+            l2.grid(row=i, column=1, pady=2)
+            i += 1
 
     def afficher(self, e=None):
         self.attributsWindow()

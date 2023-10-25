@@ -22,7 +22,6 @@ class Personnage(object):
         self._obstination = randint(3, 18)
         self._empathie = randint(3, 18)
 
-        super().__init__()
 
     @property
     def pv(self):
