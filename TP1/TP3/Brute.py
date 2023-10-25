@@ -2,8 +2,8 @@ from TP3.Personnage import Personnage
 from random import *
 from TP3.Charmeur import Charmeur
 class Brute(Personnage):
-    def __init__(self, n: str, obj: list = None):
-        Personnage.__init__(self, n, obj)
+    def __init__(self, n: str, obj: list = None,**kwargs):
+        Personnage.__init__(self, n, obj,**kwargs)
         self._force *= 1.30
         self._obstination *= 1.30
         self._intelligence *= 0.70

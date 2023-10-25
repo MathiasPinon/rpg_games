@@ -1,7 +1,7 @@
 class Objet(object):
 
-    def __init__(self, n: str = None, v: int = 10):
-        super().__init__()
+    def __init__(self, n: str = None, v: int = 10 , **kwargs):
+        super().__init__(**kwargs)
 
         self.nom = n
         self.valeur = v

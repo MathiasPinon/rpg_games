@@ -34,9 +34,3 @@ class Affichable(object):
     @property
     def attributs(self):
         return self.__attributs
-
-    def randomRGBString(self):
-        return "#" + ("%06x" % randint(0, 16777215))
-
-    def petitRectangle(self: tkinter.Canvas, nom: str):
-        return self.create_rectangle(0, 0, 3, 3, fill=randomRGBString(), tags=nom)
