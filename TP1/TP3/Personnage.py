@@ -4,7 +4,8 @@ from random import choice
 
 
 class Personnage(object):
-    def __init__(self, n: str, obj: list = None):
+    def __init__(self, n: str, obj: list = None, **kwargs):
+        super().__init__(**kwargs)
         self.nom = n
         self.amis = {}
         if obj is None:
